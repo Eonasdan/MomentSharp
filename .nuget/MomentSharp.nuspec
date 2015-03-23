@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>MomentSharp</id>
+		<version>1.0</version>
+		<authors>Eonasdan</authors>
+    <owners>Eonasdan</owners>
+		<description>MomentJs ported for C# to bring missing functions to DateTime.</description>
+		<projectUrl>https://github.com/Eonasdan/MomentSharp/</projectUrl>
+		<tags>Moment date time datetime</tags>
+		<references>
+			<reference file="MomentSharp.dll" />
+		</references>
+	</metadata>
+	<files>
+		<file src="..\build\bin\MomentSharp.dll" target="lib\net45" />
+	</files>
+</package>
