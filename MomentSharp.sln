@@ -7,21 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MomentSharp", "MomentSharp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MomentSharp.Tests", "MomentSharp.Tests\MomentSharp.Tests.csproj", "{0BCFE0D9-F655-4D1B-A8F5-9D4C3732DB10}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{86FC861C-5DD0-4E9B-A153-A258B5880C9C}"
-	ProjectSection(SolutionItems) = preProject
-		scripts\Build.ps1 = scripts\Build.ps1
-		scripts\IncrementVersion.ps1 = scripts\IncrementVersion.ps1
-		scripts\ResetAssemblyInfos.ps1 = scripts\ResetAssemblyInfos.ps1
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{049E5491-535F-4C11-9B94-93EEA669E21A}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\MomentSharp.nuspec = .nuget\MomentSharp.nuspec
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://paladincloudware.visualstudio.com/defaultcollection
+		SccProjectUniqueName0 = MomentSharp\\MomentSharp.csproj
+		SccProjectName0 = MomentSharp
+		SccLocalPath0 = MomentSharp
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = MomentSharp.Tests\\MomentSharp.Tests.csproj
+		SccProjectName2 = MomentSharp.Tests
+		SccLocalPath2 = MomentSharp.Tests
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

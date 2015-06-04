@@ -14,5 +14,11 @@ namespace MomentSharp.Tests
 
             Assert.AreEqual(expected, actual, "Not the same");
         }
+
+        [TestMethod]
+        public void ToUTC()
+        {
+            //Eastern Standard Time
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace MomentSharp
 {
-    class Bubble
+    internal class Bubble
     {
         internal static void Millisecond(ref Moment moment)
         {

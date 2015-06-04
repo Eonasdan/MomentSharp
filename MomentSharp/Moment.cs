@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Threading;
 using MomentSharp.Globalization;
 using MomentSharp.Globalization.Languages;
 
 namespace MomentSharp
 {
+    /// <summary>
+    /// Moment object which provides support for several DateTime functions that are not built-in to C#
+    /// </summary>
     public class Moment
     {
         /// <summary>
-        /// Get's a new Moment defaulting values to DateTime.UtcNow, unless <param name="zero"></param> is true in which values will be set to the min value
+        ///     Get's a new Moment defaulting values to DateTime.UtcNow, unless <paramref name="zero" /> is true in which values
+        ///     will be set to the min value
         /// </summary>
         /// <param name="zero">use min values instead of UtcNow</param>
         public Moment(bool zero = false)
@@ -36,9 +41,53 @@ namespace MomentSharp
             Language = SetLanguageByCulture();
         }
 
+        /// <summary>
+        /// Date's Year
+        /// </summary>
+        public int Year { get; set; }
+
+        /// <summary>
+        /// Date's Month
+        /// </summary>
+        public int Month { get; set; }
+        
+        /// <summary>
+        /// Date's Day
+        /// </summary>
+        public int Day { get; set; }
+
+        /// <summary>
+        /// Date's Hour
+        /// </summary>
+        public int Hour { get; set; }
+
+        /// <summary>
+        /// Date's Minute
+        /// </summary>
+        public int Minute { get; set; }
+
+        /// <summary>
+        /// Date's Second
+        /// </summary>
+        public int Second { get; set; }
+
+        /// <summary>
+        /// Date's Millisecond
+        /// </summary>
+        public int Millisecond { get; set; }
+
+        /// <summary>
+        /// Local/Language to use
+        /// </summary>
+        public ILocalize Language { get; set; }
+
+        /// <summary>
+        /// Attempts to find the correct <see cref="ILocalize"/> based on the <see cref="Thread.CurrentThread"/> CurrentCulture
+        /// </summary>
+        /// <returns>ILocalize</returns>
         private static ILocalize SetLanguageByCulture()
         {
-            var culture = System.Threading.Thread.CurrentThread.CurrentCulture.ToString().Replace("-", "");
+            var culture = Thread.CurrentThread.CurrentCulture.ToString().Replace("-", "");
             switch (culture)
             {
                 case "enUS":
@@ -48,15 +97,5 @@ namespace MomentSharp
             }
             return new EnUs();
         }
-
-        public int Year { get; set; }
-        public int Month { get; set; }
-        public int Day { get; set; }
-        public int Hour { get; set; }
-        public int Minute { get; set; }
-        public int Second { get; set; }
-        public int Millisecond { get; set; }
-
-        public ILocalize Language { get; set; }
     }
 }
