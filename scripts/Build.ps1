@@ -38,6 +38,8 @@ $msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe"
 Set-Location $parent
 
 Copy-Item MomentSharp\bin\$Configuration\MomentSharp.dll $destination\bin\
+Copy-Item MomentSharp\bin\$Configuration\MomentSharp.xml $destination\bin\
+Copy-Item MomentSharp\bin\$Configuration\MomentSharp.pdb $destination\bin\
 Copy-Item MomentSharp.Tests\bin\$configuration\*.ps1 $destination\tests\
 Copy-Item MomentSharp.Tests\bin\$configuration\*.dll $destination\tests\
 

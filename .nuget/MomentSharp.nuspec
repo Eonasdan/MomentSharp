@@ -15,5 +15,7 @@
 	</metadata>
 	<files>
 		<file src="..\build\bin\MomentSharp.dll" target="lib\net45" />
+		<file src="..\build\bin\MomentSharp.xml" target="lib\net45" />
+		<file src="..\build\bin\MomentSharp.pdb" target="lib\net45" />
 	</files>
 </package>
