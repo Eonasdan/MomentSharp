@@ -104,7 +104,7 @@ namespace MomentSharp.Globalization.Languages
                     results = string.Format("{0} 年", number);
                     break;
             }
-            return !showSuffix ? results : string.Format(isFuture ? "{0} 内" : "{0} 前", results);
+            return !showSuffix ? results : string.Format(isFuture ? "{0}内" : "{0}前", results);
         }
     }
 }
