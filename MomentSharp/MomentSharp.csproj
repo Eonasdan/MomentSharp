@@ -52,6 +52,7 @@
     <Compile Include="Globalization\Languages\De.cs" />
     <Compile Include="Globalization\Languages\EnUs.cs" />
     <Compile Include="Globalization\ILocalize.cs" />
+    <Compile Include="Globalization\Languages\ZhCn.cs" />
     <Compile Include="Globalization\RelativeTime.cs" />
     <Compile Include="Moment.cs" />
     <Compile Include="DateTimeParts.cs" />
