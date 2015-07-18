@@ -94,6 +94,10 @@ namespace MomentSharp
                     return new EnUs();
                 case "de":
                     return new De();
+                case "zhCN":
+                    return new ZhCn();
+                case "zhTW":
+                    return new ZhTw();
             }
             return new EnUs();
         }
