@@ -55,6 +55,17 @@ namespace MomentSharp
         }
 
         /// <summary>
+        /// Convert this <paramref name="moment" /> object to LocalTime <see cref="System.DateTime" />
+        /// </summary>
+        /// <param name="moment">A Moment Object</param>
+        /// <returns>DateTime</returns>
+        public static DateTime LocalTime(this Moment moment)
+        {
+            var dateTime = moment.DateTime();
+            return dateTime.ToLocalTime();
+        }
+
+        /// <summary>
         ///     Converts this <paramref name="dateTime" /> to a <see cref="Moment" /> object
         /// </summary>
         /// <param name="dateTime">this DateTime</param>
