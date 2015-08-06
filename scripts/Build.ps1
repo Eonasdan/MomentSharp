@@ -14,17 +14,25 @@ if (!(Test-Path $destination -PathType Container)){
     New-Item $destination -ItemType Directory | Out-Null
 }
 
-if (Test-Path $destination\bin -PathType Container){
-    Remove-Item $destination\bin -Recurse -Force
-    Remove-Item $destination\tests -Recurse -Force
+if (Test-Path $destination\bin-Net40 -PathType Container){
+    Remove-Item $destination\bin-Net40 -Recurse -Force
+    Remove-Item $destination\tests-Net40 -Recurse -Force
 }
 
-New-Item $destination\bin -ItemType Directory | Out-Null
-New-Item $destination\tests -ItemType Directory | Out-Null
+New-Item $destination\bin-Net40 -ItemType Directory | Out-Null
+New-Item $destination\tests-Net40 -ItemType Directory | Out-Null
 
 if (!(Test-Path $nugetDestination -PathType Container)){
     New-Item $nugetDestination -ItemType Directory | Out-Null
 }
+
+if (Test-Path $destination\bin-Net45 -PathType Container){
+    Remove-Item $destination\bin-Net45 -Recurse -Force
+    Remove-Item $destination\tests-Net45 -Recurse -Force
+}
+
+New-Item $destination\bin-Net45 -ItemType Directory | Out-Null
+New-Item $destination\tests-Net45 -ItemType Directory | Out-Null
 
 $build = [Math]::Floor([DateTime]::UtcNow.Subtract([DateTime]::Parse("01/01/2000").Date).TotalDays)
 $revision = [Math]::Floor([DateTime]::UtcNow.TimeOfDay.TotalSeconds / 2)
@@ -37,13 +45,19 @@ $msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe"
 
 Set-Location $parent
 
-Copy-Item MomentSharp\bin\$Configuration\MomentSharp.dll $destination\bin\
-Copy-Item MomentSharp\bin\$Configuration\MomentSharp.xml $destination\bin\
-Copy-Item MomentSharp\bin\$Configuration\MomentSharp.pdb $destination\bin\
-Copy-Item MomentSharp.Tests\bin\$configuration\*.ps1 $destination\tests\
-Copy-Item MomentSharp.Tests\bin\$configuration\*.dll $destination\tests\
+Copy-Item MomentSharp\bin\$Configuration-Net45\MomentSharp.dll $destination\bin-Net45\
+Copy-Item MomentSharp\bin\$Configuration-Net45\MomentSharp.xml $destination\bin-Net45\
+Copy-Item MomentSharp\bin\$Configuration-Net45\MomentSharp.pdb $destination\bin-Net45\
+Copy-Item MomentSharp\bin\$Configuration-Net40\MomentSharp.dll $destination\bin-Net40\
+Copy-Item MomentSharp\bin\$Configuration-Net40\MomentSharp.xml $destination\bin-Net40\
+Copy-Item MomentSharp\bin\$Configuration-Net40\MomentSharp.pdb $destination\bin-Net40\
 
-$versionInfo = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$destination\bin\MomentSharp.dll")
+Copy-Item MomentSharp.Tests\bin\$configuration-Net45\*.ps1 $destination\tests-Net45\
+Copy-Item MomentSharp.Tests\bin\$configuration-Net45\*.dll $destination\tests-Net45\
+Copy-Item MomentSharp.Tests\bin\$configuration-Net40\*.ps1 $destination\tests-Net40\
+Copy-Item MomentSharp.Tests\bin\$configuration-Net40\*.dll $destination\tests-Net40\
+
+$versionInfo = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$destination\bin-Net45\MomentSharp.dll")
 $version = $versionInfo.FileVersion.ToString()
 
 Set-Location $parent\.nuget
