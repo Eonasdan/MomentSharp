@@ -24,34 +24,43 @@ namespace MomentSharp
 
             var timeSpan = (moment.DateTime() - dateTime);
             var isFuture = timeSpan.TotalSeconds > 0;
-
-            if (timeSpan.TotalSeconds.InRange(0, 45)) // 0-45 seconds
+            timeSpan = timeSpan.Negate();
+            if (timeSpan.TotalSeconds < 60*45)
             {
-                return local.Translate(RelativeTime.Seconds, timeSpan.Seconds, showSuffix, isFuture);
+                if (timeSpan.TotalSeconds.InRange(0, 45)) // 0-45 seconds
+                {
+                    return local.Translate(RelativeTime.Seconds, timeSpan.Seconds, showSuffix, isFuture);
+                }
+                if (timeSpan.TotalSeconds.InRange(46, 90)) // 46-90 seconds
+                {
+                    return local.Translate(RelativeTime.Minute, timeSpan.Minutes, showSuffix, isFuture);
+                }
+                if (timeSpan.TotalSeconds.InRange(91, 60*45)) //91 seconds to 45 minutes
+                {
+                    return local.Translate(RelativeTime.Minutes, timeSpan.Minutes, showSuffix, isFuture);
+                }
             }
-            if (timeSpan.TotalSeconds.InRange(46, 90)) // 46-90 seconds
+            if (timeSpan.TotalMinutes < 60*22)
             {
-                return local.Translate(RelativeTime.Minute, timeSpan.Minutes, showSuffix, isFuture);
+                if (timeSpan.TotalMinutes.InRange(46, 90)) //46 minutes to 90 minutes
+                {
+                    return local.Translate(RelativeTime.Hour, timeSpan.Hours, showSuffix, isFuture);
+                }
+                if (timeSpan.TotalMinutes.InRange(91, 60*22)) //91 minutes to 22 hours
+                {
+                    return local.Translate(RelativeTime.Hours, timeSpan.Hours, showSuffix, isFuture);
+                }
             }
-            if (timeSpan.TotalSeconds.InRange(91, 60*45)) //91 seconds to 45 minutes
+            if (timeSpan.TotalHours < 24*25)
             {
-                return local.Translate(RelativeTime.Minutes, timeSpan.Minutes, showSuffix, isFuture);
-            }
-            if (timeSpan.TotalMinutes.InRange(46, 90)) //46 minutes to 90 minutes
-            {
-                return local.Translate(RelativeTime.Hour, timeSpan.Hours, showSuffix, isFuture);
-            }
-            if (timeSpan.TotalMinutes.InRange(91, 60*22)) //91 minutes to 22 hours
-            {
-                return local.Translate(RelativeTime.Hours, timeSpan.Hours, showSuffix, isFuture);
-            }
-            if (timeSpan.TotalHours.InRange(23, 36)) //23-36 hours
-            {
-                return local.Translate(RelativeTime.Day, timeSpan.Days, showSuffix, isFuture);
-            }
-            if (timeSpan.TotalHours.InRange(37, 24*25)) //37 hours to 25 days
-            {
-                return local.Translate(RelativeTime.Days, timeSpan.Days, showSuffix, isFuture);
+                if (timeSpan.TotalHours.InRange(23, 36)) //23-36 hours
+                {
+                    return local.Translate(RelativeTime.Day, timeSpan.Days, showSuffix, isFuture);
+                }
+                if (timeSpan.TotalHours.InRange(37, 24*25)) //37 hours to 25 days
+                {
+                    return local.Translate(RelativeTime.Days, timeSpan.Days, showSuffix, isFuture);
+                }
             }
             if (timeSpan.TotalDays.InRange(26, 45)) //26-45 days
             {
@@ -144,8 +153,8 @@ namespace MomentSharp
 
         internal static bool InRange(this double numberToCheck, int bottom, int top)
         {
-            numberToCheck = Math.Abs(numberToCheck);
-            return (numberToCheck > bottom && numberToCheck < top);
+            numberToCheck = Math.Round(Math.Abs(numberToCheck), MidpointRounding.AwayFromZero);
+            return (numberToCheck >= bottom && numberToCheck <= top);
         }
     }
 }
