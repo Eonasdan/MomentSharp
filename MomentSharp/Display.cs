@@ -94,15 +94,16 @@ namespace MomentSharp
             var local = moment.Language;
             if (dateTime == default(DateTime)) dateTime = DateTime.Now;
 
-            var timeSpan = (moment.DateTime() - dateTime).TotalDays;
+            //compare width DateTimeParts.Day
+            var timeSpan = (moment.DateTime() - dateTime.StartOf(DateTimeParts.Day)).TotalDays;
 
-            if (timeSpan < -6) return local.Translate(Globalization.Calendar.SameElse, moment.DateTime());
-            if (timeSpan < -1) return local.Translate(Globalization.Calendar.LastWeek, dateTime);
-            if (timeSpan < 0) return local.Translate(Globalization.Calendar.LastDay, dateTime);
-            if (timeSpan < 1) return local.Translate(Globalization.Calendar.SameDay, dateTime);
-            if (timeSpan < 2) return local.Translate(Globalization.Calendar.NextDay, dateTime);
-            if (timeSpan < 7) return local.Translate(Globalization.Calendar.NextWeek, dateTime);
-            return local.Translate(Globalization.Calendar.SameElse, moment.DateTime());
+            if (timeSpan < -6) return local.Translate(Globalization.Calendar.SameElse, moment.LocalTime());
+            if (timeSpan < -1) return local.Translate(Globalization.Calendar.LastWeek, moment.LocalTime());
+            if (timeSpan < 0) return local.Translate(Globalization.Calendar.LastDay, moment.LocalTime());
+            if (timeSpan < 1) return local.Translate(Globalization.Calendar.SameDay, moment.LocalTime());
+            if (timeSpan < 2) return local.Translate(Globalization.Calendar.NextDay, moment.LocalTime());
+            if (timeSpan < 7) return local.Translate(Globalization.Calendar.NextWeek, moment.LocalTime());
+            return local.Translate(Globalization.Calendar.SameElse, moment.LocalTime());
         }
 
         /// <summary>
