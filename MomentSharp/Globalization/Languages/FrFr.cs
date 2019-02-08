@@ -5,7 +5,7 @@ namespace MomentSharp.Globalization.Languages
     /// <summary>
     ///  Localization for French (Fr,Français) (Fr-FR)
     /// </summary>
-    public class EnUs : ILocalize
+    public class FrFr : ILocalize
     {
         /// <summary>
         /// French localization implementation constructor
