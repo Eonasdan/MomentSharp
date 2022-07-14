@@ -7,7 +7,7 @@ namespace MomentSharp
     /// </summary>
 
     [CompilerGenerated]
-    class NamespaceDoc
+    internal class NamespaceDoc
     {
     }
 }
@@ -20,7 +20,7 @@ namespace MomentSharp.Globalization
     /// </summary>
 
     [CompilerGenerated]
-    class NamespaceDoc
+    internal class NamespaceDoc
     {
     }
 }
@@ -33,7 +33,7 @@ namespace MomentSharp.Globalization.Languages
     /// </summary>
 
     [CompilerGenerated]
-    class NamespaceDoc
+    internal class NamespaceDoc
     {
     }
 }
